@@ -19,6 +19,11 @@ const ProductSchema = mongoose.Schema(
     image: {
         type: String,
         required: false
+    },
+    completedAt: {
+      type: Date,
+      required: false,
+      nullable: true
     }
   },
   {

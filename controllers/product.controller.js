@@ -55,14 +55,38 @@ const deleteProduct = async (req, res) => {
         }
 
     } catch (error) {
+}}
 
-    }
-}
+const setTaskCompleted = async (req, res) => {
+    try {
+        const {id} = req.params;
+        let currentDate = {
+            completedAt: new Date()
+        }
+        const products = await Product.findByIdAndUpdate(id, currentDate);
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+}}
+
+const unsetTaskCompleted = async (req, res) => {
+    try {
+        const {id} = req.params;
+        let currentDate = {
+            completedAt: null
+        }
+        const products = await Product.findByIdAndUpdate(id, currentDate);
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+}}
 
 module.exports = {
     getProducts,
     getSingleProduct,
     createProduct,
     editProduct,
-    deleteProduct
+    deleteProduct,
+    setTaskCompleted,
+    unsetTaskCompleted
 }
