@@ -1,5 +1,5 @@
-require('dotenv').config();
-const uri = process.env.MONGO_URI;
+// require('dotenv').config();
+// const uri = process.env.MONGO_URI;
 
 const express = require('express');
 const cors = require('cors');
@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/api/tasks', taskRoute);
 
 mongoose
-  .connect(uri)
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to database!');
     app.listen(3000, () => {
