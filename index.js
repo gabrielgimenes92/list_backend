@@ -1,5 +1,6 @@
 // require('dotenv').config();
-// const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URI;
+const port = process.env.PORT;
 
 const express = require('express');
 const cors = require('cors');
@@ -16,11 +17,11 @@ app.use(cors());
 app.use('/api/tasks', taskRoute);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(uri)
   .then(() => {
     console.log('Connected to database!');
-    app.listen(3000, () => {
-      console.log('Server is running on port 3000');
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
     });
   })
   .catch(() => {
