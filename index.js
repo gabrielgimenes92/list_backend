@@ -16,6 +16,9 @@ app.use(cors());
 // Routes
 app.use('/api/tasks', taskRoute);
 
+console.log(uri);
+console.log(port);
+
 mongoose
   .connect(uri)
   .then(() => {
