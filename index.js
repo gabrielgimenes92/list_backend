@@ -1,4 +1,3 @@
-// require('dotenv').config();
 const uri = process.env.MONGO_URI;
 const port = process.env.PORT || 10000;
 
@@ -16,9 +15,6 @@ app.use(cors());
 // Routes
 app.use('/api/tasks', taskRoute);
 
-console.log(uri);
-console.log(port);
-
 app.get('/', (req, res) => {
   res.send('Hello from node API');
 });
@@ -32,6 +28,5 @@ mongoose
     });
   })
   .catch((e) => {
-    console.log(e);
     console.log('Connection failed!');
   });
