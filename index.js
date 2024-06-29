@@ -1,6 +1,6 @@
 // require('dotenv').config();
 const uri = process.env.MONGO_URI;
-const port = process.env.PORT;
+const port = process.env.PORT || 10000;
 
 const express = require('express');
 const cors = require('cors');
@@ -19,6 +19,10 @@ app.use('/api/tasks', taskRoute);
 console.log(uri);
 console.log(port);
 
+app.get('/', (req, res) => {
+  res.send('Hello from node API');
+});
+
 mongoose
   .connect(uri)
   .then(() => {
@@ -27,10 +31,7 @@ mongoose
       console.log(`Server is running on port ${port}`);
     });
   })
-  .catch(() => {
+  .catch((e) => {
+    console.log(e);
     console.log('Connection failed!');
   });
-
-app.get('/', (req, res) => {
-  res.send('Hello from node API');
-});
